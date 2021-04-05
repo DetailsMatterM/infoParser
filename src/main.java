@@ -24,16 +24,16 @@ public class main {
     }
 
     public static void main(String[] args){
-        String text = "";
+        String info = "";
         try {
             // text has to be given as a file path, like (windows) "D:\\Dropbox\\shared2\\infoParser\\testFiles\\testInfo.txt"
-            text = new String(Files.readAllBytes(Paths.get(args[0])));
+            info = new String(Files.readAllBytes(Paths.get(args[0])));
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         ArrayList<String> testNames = new ArrayList<String>();
-        String [] input = text.split("\\s+");
+        String [] input = info.split("\\s+");
         for (int i = 0; i < input.length; i++) {
             if (input[i].equals("cause")) {
 
@@ -63,8 +63,8 @@ public class main {
             }
         }
         if (testNames.size() > 0) {
-            // // text has to be given as a file path, like (windows) "D:\\Dropbox\\shared2\\infoParser\\testFiles\\names.txt"
-            printToFile(testNames, args[2] + "/" + "testNames.txt");
+            // outputPath has to be given as a file path, like (windows) "D:\\Dropbox\\shared2\\infoParser\\testFiles"
+            printToFile(testNames, args[1] + "/" + "testNames.txt");
         }
 
 
