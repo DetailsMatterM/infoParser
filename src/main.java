@@ -23,17 +23,31 @@ public class main {
         }
     }
 
-    public static void main(String[] args){
-        String info = "";
-        try {
-            // text has to be given as a file path, like (windows) "D:\\Dropbox\\shared2\\infoParser\\testFiles\\testInfo.txt"
-            info = new String(Files.readAllBytes(Paths.get(args[0])));
-        } catch (IOException e) {
-            e.printStackTrace();
+    public static void dateParse(String [] input, String [] args) {
+        ArrayList<String> dates = new ArrayList<String>();
+        for (int i = 0; i < input.length; i++) {
+            if (input[i].equals("date")) {
+                String date = input[i + 3];
+                dates.add(date);
+            }
         }
+        printToFile(dates, args[1] + "\\" + "date.txt");
+    }
 
+    /**
+     * The function provides the framework for analysis of several versions in the basepath
+     * @param basePath - path to project folder with version subfolders
+     * @param firstVersion - first version you want to analyse
+     * @param lastVersion - last version you want to analyse
+     */
+    public static void multiFileSearch(String basePath, int firstVersion, int lastVersion) {
+        for (int i = 1; i <= lastVersion; i++) {
+            String targetPath = basePath
+        }
+    }
+
+    public static void causeParse(String [] input, String [] args) {
         ArrayList<String> testNames = new ArrayList<String>();
-        String [] input = info.split("\\s+");
         for (int i = 0; i < input.length; i++) {
             if (input[i].equals("cause")) {
 
@@ -64,8 +78,23 @@ public class main {
         }
         if (testNames.size() > 0) {
             // outputPath has to be given as a file path, like (windows) "D:\\Dropbox\\shared2\\infoParser\\testFiles"
-            printToFile(testNames, args[1] + "/" + "testNames.txt");
+            printToFile(testNames, args[1] + "\\" + "testNames2.txt");
         }
+    }
+
+    public static void main(String[] args){
+        String info = "";
+        try {
+            // text has to be given as a file path, like (windows) "D:\\Dropbox\\shared2\\infoParser\\testFiles\\testInfo.txt"
+            info = new String(Files.readAllBytes(Paths.get(args[0])));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        String [] input = info.split("\\s+");
+        dateParse(input, args);
+
 
 
 
